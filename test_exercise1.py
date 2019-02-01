@@ -1,16 +1,16 @@
 import logging as log
 from time import sleep
-import pytest
 
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-EXERCISE_URL = 'exercises/exercise1?seed=7456bec7-98df-46c0-82a4-acb02c81712f'
+EXERCISE_URL = 'exercises/exercise1'
 
-def test_exercise1_ok(driver, prod_environment):
-    log.info('url:' + prod_environment.base_url + EXERCISE_URL)
-    driver.get(prod_environment.base_url + EXERCISE_URL)
+def test_exercise1_ok(driver, environment):
+    url = environment.base_url + EXERCISE_URL + '?seed=' + environment.seed
+    log.info('url: ' + url)
+    driver.get(url)
     assert driver.title == "AntyCaptcha"
 
     wait = WebDriverWait(driver,10)
@@ -31,9 +31,10 @@ def test_exercise1_ok(driver, prod_environment):
     text = driver.find_element(By.XPATH, '//pre[@id="trail"]/code').text
     assert 'OK. Good answer' in text
 
-def test_exercise1_ok_without_wait(driver, prod_environment):
-    log.info('url:' + prod_environment.base_url + EXERCISE_URL)
-    driver.get(prod_environment.base_url + EXERCISE_URL)
+def test_exercise1_ok_without_wait(driver, environment):
+    url = environment.base_url + EXERCISE_URL + '?seed=' + environment.seed
+    log.info('url: ' + url)
+    driver.get(url)
     assert driver.title == 'AntyCaptcha'
 
     driver.find_element_by_id('btnButton1').click()
@@ -49,9 +50,10 @@ def test_exercise1_ok_without_wait(driver, prod_environment):
 
 
 
-def test_exercise1_not_ok(driver, prod_environment):
-    log.info('url:' + prod_environment.base_url + EXERCISE_URL)
-    driver.get(prod_environment.base_url + EXERCISE_URL)
+def test_exercise1_not_ok(driver, environment):
+    url = environment.base_url + EXERCISE_URL + '?seed=' + environment.seed
+    log.info('url: ' + url)
+    driver.get(url)
     assert driver.title == "AntyCaptcha"
 
     driver.find_element_by_id('btnButton1').click()
