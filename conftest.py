@@ -4,7 +4,7 @@ from selenium import webdriver
 SEED = '7456bec7-98df-46c0-82a4-acb02c81712f'
 
 
-@pytest.fixture(scope='module', params=['Chrome', 'Firefox', pytest.param('IE', marks=pytest.mark.skip),
+@pytest.fixture(scope='function', params=['Chrome', 'Firefox', pytest.param('IE', marks=pytest.mark.skip),
                                         pytest.param('Edge', marks=pytest.mark.skip)])
 def driver(request):
     if request.param == 'Chrome':
@@ -29,7 +29,7 @@ class Environment:
         return __dict__
 
 
-@pytest.fixture(scope='module', params=['prod'])
+@pytest.fixture(scope='module', params=['test'])
 def environment(request):
     env = Environment()
     if request.param == 'prod':

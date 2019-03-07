@@ -16,18 +16,14 @@ def test_exercise1_ok(driver, environment):
     wait = WebDriverWait(driver,10)
     driver.find_element_by_id('btnButton1').click()
     wait.until(EC.text_to_be_present_in_element((By.XPATH,'//pre[@id="trail"]/code'), 'b1'))
-    # sleep(1)
     driver.find_element_by_id('btnButton2').click()
     wait.until(EC.text_to_be_present_in_element((By.XPATH,'//pre[@id="trail"]/code'), 'b1b2'))
-    # sleep(1)
     driver.find_element_by_id('btnButton1').click()
     wait.until(EC.text_to_be_present_in_element((By.XPATH,'//pre[@id="trail"]/code'), 'b1b2b1'))
-    # sleep(1)
     text = driver.find_element(By.XPATH, '//pre[@id="trail"]/code').text
     log.info('trail: ' + text)
 
     driver.find_element(By.ID, 'solution').click()
-    sleep(1)
     text = driver.find_element(By.XPATH, '//pre[@id="trail"]/code').text
     assert 'OK. Good answer' in text
 
