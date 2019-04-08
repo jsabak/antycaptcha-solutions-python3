@@ -19,20 +19,17 @@ def set_driver(driver):
 
 
 def open_page():
-    url = f'{Config.MAIN_URL}/{Config.EXERCISES_URL}/exercise3?{Config.SEED_PARAM}'
+    url = f'{Config.MAIN_URL}/{Config.EXERCISES_URL}/exercise4?{Config.SEED_PARAM}'
     log.info(url)
     _driver.get(url)
     page_objects.exercises._wait = WebDriverWait(_driver, 30)
     log.info('Exercise 3 opened.')
 
-
-def select_colour(visible_text):
+def check_radio_button_in_a_group(group_no, radio_label):
     prev_text = _driver.find_element_by_class_name('wrap').text
-    element = Select(_driver.find_element_by_id('s13'))
-    element.select_by_visible_text(visible_text)
-    log.info(f'Element selected form dropdown list: {visible_text}')
+    radio = _driver.find_element_by_xpath(f'((//div[./h5[text() = "Group {group_no}:"]]//text())[.="{radio_label}"]/preceding-sibling::*)[last()]')
+    radio.click()
     _wait.until(EC1.text_changed((By.CLASS_NAME, 'wrap'), prev_text))
-
 
 def click_check_solution():
     prev_text = _driver.find_element_by_class_name('wrap').text

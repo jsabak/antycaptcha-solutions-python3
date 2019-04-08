@@ -1,23 +1,32 @@
 from config import Config
 
-
-def test_positive(fixture):
-    step = fixture.common
-    seed = step.get_seed()
-    step.open_exercise(4, seed)
-    step.check_steps_and_click_radio_buttons()
-    step.click_check_solution()
-    assert step.check_trail() == Config.TEST_PASS_TEXT
-    step.back_to_main_page()
+from page_objects.exercises.po_exercise_4 import *
 
 
-def test_negative(fixture):
-    step = fixture.common
-    seed = step.get_seed()
-    step.open_exercise(4, seed)
-    step.click_check_solution()
-    assert step.check_trail() == Config.TEST_FAIL_TEXT
-    step.back_to_main_page()
+def test_positive(driver):
+    set_driver(driver)
+    open_page()
+
+    check_radio_button_in_a_group(0, "Pink Kong")
+    check_radio_button_in_a_group(1, "Beluga Brown")
+    check_radio_button_in_a_group(2, "Pink Kong")
+    check_radio_button_in_a_group(3, "Mango Orange")
+
+    click_check_solution()
+    assert get_trail_text() == Config.TEST_PASS_TEXT
+
+
+def test_negative(driver):
+    set_driver(driver)
+    open_page()
+
+    check_radio_button_in_a_group(0, "Pink Kong")
+    check_radio_button_in_a_group(1, "Pink Kong")
+    check_radio_button_in_a_group(2, "Pink Kong")
+    check_radio_button_in_a_group(3, "Mango Orange")
+
+    click_check_solution()
+    assert get_trail_text() == Config.TEST_FAIL_TEXT
 
 
 __author__ = 'GiSDeCain'
