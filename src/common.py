@@ -15,7 +15,7 @@ class Common:
 
 
 
-    # def click_check_soluition(self):  # This one is an experiment and it's not working yet.
+    # def click_check_solution(self):  # This one is an experiment and it's not working yet.
     #     driver = self.app.driver
     #     table = driver.find_elements_by_xpath('//tbody/tr/td')
     #     len_tabel = len(table) / 3

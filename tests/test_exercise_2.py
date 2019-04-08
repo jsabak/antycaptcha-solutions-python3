@@ -1,5 +1,4 @@
-from config import Config
-from page_objects.po_exercise_2 import *
+from page_objects.exercises.po_exercise_2 import *
 
 
 def test_positive(driver):

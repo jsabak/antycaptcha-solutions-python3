@@ -1,7 +1,4 @@
-from time import sleep
-
-from config import Config
-from page_objects.po_exercise_1 import *
+from page_objects.exercises.po_exercise_1 import *
 
 
 def test_positive(driver):
