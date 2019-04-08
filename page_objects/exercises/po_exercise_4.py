@@ -1,7 +1,6 @@
 import logging as log
 
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.select import Select
 from selenium.webdriver.support.wait import WebDriverWait
 
 import page_objects.exercises
@@ -23,7 +22,7 @@ def open_page():
     log.info(url)
     _driver.get(url)
     page_objects.exercises._wait = WebDriverWait(_driver, 30)
-    log.info('Exercise 3 opened.')
+    log.info('Exercise 4 opened.')
 
 def check_radio_button_in_a_group(group_no, radio_label):
     prev_text = _driver.find_element_by_class_name('wrap').text
