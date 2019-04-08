@@ -1,29 +1,26 @@
 from config import Config
+from page_objects.po_exercise_2 import *
 
 
-def test_positive(fixture):
-    step = fixture.common
-    seed = step.get_seed()
-    step.open_exercise(2, seed)
-    text = step.copy_text(1)
-    step.paste_text('t14', text)
-    step.click_button_ex2(2)
-    step.click_check_solution()
-    step.check_trail()
-    assert step.check_trail() == Config.TEST_PASS_TEXT
-    step.back_to_main_page()
+def test_positive(driver):
+    set_driver(driver)
+    open_page()
 
+    enter_text_to_t14_editbox('Agree series.')
+    press_b1_button()
 
-def test_negative(fixture):
-    step = fixture.common
-    seed = step.get_seed()
-    step.open_exercise(2, seed)
-    step.paste_text('t14', 'test')
-    step.click_button_ex2(2)
-    step.click_check_solution()
-    step.check_trail()
-    assert step.check_trail() == Config.TEST_FAIL_TEXT
-    step.back_to_main_page()
+    click_check_soluition()
+    assert get_trail_text() == Config.TEST_PASS_TEXT
+
+def test_negative(driver):
+    set_driver(driver)
+    open_page()
+
+    enter_text_to_t14_editbox('Some text.')
+    press_b1_button()
+
+    click_check_soluition()
+    assert get_trail_text() == Config.TEST_FAIL_TEXT
 
 
 __author__ = 'GiSDeCain'

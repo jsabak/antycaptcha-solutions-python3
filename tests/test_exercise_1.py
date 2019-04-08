@@ -12,8 +12,8 @@ def test_positive(driver):
     click_button2()
     click_button1()
 
-
-    assert check_right_solution()
+    click_check_soluition()
+    assert get_trail_text() == Config.TEST_PASS_TEXT
 
 
 def test_negative(driver):
@@ -24,4 +24,5 @@ def test_negative(driver):
     click_button1()
     click_button1()
 
-    assert check_wrong_solution()
+    click_check_soluition()
+    assert get_trail_text() == Config.TEST_FAIL_TEXT
